@@ -3,31 +3,22 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main  # Trigger bei Push auf main
+      - main
 
 jobs:
   build-and-push:
+    permissions: write-all
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Repo auschecken
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # 2️⃣ GitHub Container Registry login
       - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: fireflies38       # Dein Benutzername
-          password: ${{ secrets.GITHUB_TOKEN }} # Automatisch verfügbar in Workflows
-
-      # 3️⃣ Docker Image bauen
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Docker image
-        run: |
-          docker build -t ghcr.io/fireflies38/iso-updater:latest .
-
-      # 4️⃣ Docker Image pushen
+        run: docker build -t ghcr.io/fireflies38/iso-updater:latest .
       - name: Push Docker image
-        run: |
-          docker push ghcr.io/fireflies38/iso-updater:latest
+        run: docker push ghcr.io/fireflies38/iso-updater:latest
