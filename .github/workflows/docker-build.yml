@@ -1,0 +1,34 @@
+name: Docker Build and Push
+
+# Trigger: Bei jedem Push auf den main-Branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Repository auschecken
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Bei GHCR einloggen
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    # 3. Docker Image bauen
+    - name: Build Docker image
+      run: |
+        docker build -t ghcr.io/${{ github.repository_owner }}/iso-updater:latest .
+
+    # 4. Docker Image pushen
+    - name: Push Docker image
+      run: |
+        docker push ghcr.io/${{ github.repository_owner }}/iso-updater:latest
