@@ -19,15 +19,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}        # Dein Benutzername
+          username: fireflies38       # Dein Benutzername
           password: ${{ secrets.GITHUB_TOKEN }} # Automatisch verfügbar in Workflows
 
       # 3️⃣ Docker Image bauen
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.actor }}/iso-updater:latest .
+          docker build -t ghcr.io/fireflies38/iso-updater:latest .
 
       # 4️⃣ Docker Image pushen
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.actor }}/iso-updater:latest
+          docker push ghcr.io/fireflies38/iso-updater:latest
