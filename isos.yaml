@@ -1,0 +1,6 @@
+# isos.yaml
+home-assistant: https://github.com/home-assistant/operating-system/releases/latest/download/haos_ova-13.2.qcow2.xz
+proxmox-ve: https://enterprise.proxmox.com/iso/proxmox-ve_8.2-1.iso
+truenas-scale: https://download.truenas.com/TrueNAS-SCALE-24.04.1.1.iso
+unraid: https://unraid-dl.sfo2.cdn.digitaloceanspaces.com/stable/unRAIDServer-6.12.10-x86_64.zip
+

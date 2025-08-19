@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  iso-updater:
+    build: .
+    container_name: iso-updater
+    volumes:
+      - /mnt/user/isos         # Hier speichert der Container die ISOs
+      - /mnt/user/appdata/iso-updater:/config  # Hier liegt die isos.yaml
+    restart: unless-stopped
+
