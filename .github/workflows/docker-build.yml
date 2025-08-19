@@ -26,9 +26,9 @@ jobs:
     # 3. Docker Image bauen
     - name: Build Docker image
       run: |
-        docker build -t ghcr.io/${{ github.repository_owner }}/iso-updater:latest .
+        docker build -t ghcr.io/${{ github.actor }}/iso-updater:latest .
 
     # 4. Docker Image pushen
     - name: Push Docker image
       run: |
-        docker push ghcr.io/${{ github.repository_owner }}/iso-updater:latest
+        docker push ghcr.io/${{ github.actor }}/iso-updater:latest
